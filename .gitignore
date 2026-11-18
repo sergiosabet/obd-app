@@ -1,0 +1,7 @@
+node_modules
+dist
+dev-dist
+*.log
+# La especificacion lleva datos personales; se queda solo en la computadora.
+docs/*.pdf
+.impeccable/

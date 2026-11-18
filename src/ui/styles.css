@@ -1,0 +1,162 @@
+/* Modo oscuro por defecto (sección 7.3): se usa en el carro, a veces de noche o en el taller. */
+:root {
+  color-scheme: dark;
+  --fondo: #0f1724;
+  --superficie: #17223a;
+  --superficie-alta: #1f2c48;
+  --linea: #2c3a58;
+  --texto: #eef2f8;
+  --texto-suave: #a9b6cc;
+  --acento: #f07033;
+  --acento-texto: #1c0d04;
+  --ok: #4cc38a;
+  --alerta: #f2b33d;
+  --error: #ff7a6b;
+  --radio: 14px;
+  --fuente: 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --mono: ui-monospace, 'Cascadia Mono', 'Roboto Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font: 400 1.125rem/1.5 var(--fuente);
+  -webkit-tap-highlight-color: transparent;
+}
+::selection { background: var(--acento); color: var(--acento-texto); }
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 3px; border-radius: 6px; }
+a { color: inherit; text-decoration: none; }
+h1, h2 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+
+.app { min-height: 100dvh; }
+.contenido {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem 1rem calc(2rem + env(safe-area-inset-bottom));
+}
+
+/* Barra superior de las pantallas internas */
+.barra {
+  position: sticky; top: 0; z-index: 1;
+  display: flex; align-items: center; gap: .5rem;
+  padding: calc(.5rem + env(safe-area-inset-top)) 1rem .5rem .5rem;
+  background: var(--fondo);
+  border-bottom: 1px solid var(--linea);
+}
+.barra h1 { font-size: 1.375rem; font-weight: 700; }
+.atras {
+  display: grid; place-items: center;
+  width: 48px; height: 48px; border-radius: 12px;
+}
+.atras:active { background: var(--superficie); }
+
+/* Inicio */
+.inicio { padding-top: calc(1.5rem + env(safe-area-inset-top)); }
+.marca { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.01em; }
+.estado { margin: 1rem 0 1.75rem; }
+.estado-linea { display: flex; align-items: center; gap: .5rem; font-size: 1.25rem; font-weight: 700; }
+.punto { width: 12px; height: 12px; border-radius: 50%; background: var(--texto-suave); }
+.estado-detalle { color: var(--texto-suave); margin-top: .25rem; }
+.estado-detalle strong { color: var(--texto); font-weight: 700; }
+
+.acciones { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.accion {
+  display: flex; flex-direction: column; justify-content: flex-end; gap: .5rem;
+  min-height: 8.5rem; padding: 1rem;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  transition: background-color .15s ease-out, transform .15s ease-out;
+}
+.accion:active { transform: scale(.98); background: var(--superficie-alta); }
+.accion-titulo { font-size: 1.375rem; font-weight: 700; line-height: 1.2; }
+.accion-ancha { grid-column: 1 / -1; min-height: 6.5rem; }
+.accion-principal {
+  grid-column: 1 / -1; min-height: 9rem;
+  background: var(--acento); border-color: var(--acento); color: var(--acento-texto);
+}
+.accion-principal:active { background: #e05f22; }
+.accion-nota { font-size: 1rem; line-height: 1.35; }
+
+.lista { margin-top: 1.75rem; border-top: 1px solid var(--linea); }
+.lista a {
+  display: flex; align-items: center; gap: 1rem;
+  min-height: 3.5rem; padding: .5rem .25rem;
+  border-bottom: 1px solid var(--linea);
+  font-size: 1.25rem;
+}
+.lista a:active { background: var(--superficie); }
+.lista svg { color: var(--texto-suave); }
+.version { margin-top: 2rem; color: var(--texto-suave); font-size: 1rem; }
+
+/* Pantallas pendientes */
+.pendiente { padding-top: 1rem; max-width: 34rem; }
+.pendiente-fase { font-size: 1.25rem; font-weight: 700; color: var(--alerta); margin-bottom: .5rem; }
+.pendiente p:last-child { color: var(--texto-suave); }
+
+/* Ajustes */
+.bloque { padding: 1.25rem 0 1.75rem; }
+.bloque + .bloque { border-top: 1px solid var(--linea); }
+.bloque h2 { font-size: 1.375rem; font-weight: 700; }
+.ayuda { color: var(--texto-suave); margin: .375rem 0 1rem; font-size: 1rem; }
+
+.opciones { display: grid; gap: .5rem; }
+.opcion {
+  display: flex; gap: .875rem; align-items: flex-start;
+  padding: .875rem 1rem;
+  border: 1px solid var(--linea); border-radius: 12px;
+  cursor: pointer;
+}
+.opcion:has(input:checked) { border-color: var(--acento); background: var(--superficie); }
+.opcion input { width: 1.375rem; height: 1.375rem; margin: .125rem 0 0; accent-color: var(--acento); flex: none; }
+.opcion strong { display: block; }
+.opcion small { display: block; color: var(--texto-suave); font-size: .9375rem; line-height: 1.4; }
+
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 48px; padding: .5rem 1rem;
+  background: var(--superficie); color: var(--texto);
+  border: 1px solid var(--linea); border-radius: 12px;
+  font: 700 1.0625rem var(--fuente);
+  cursor: pointer;
+}
+.boton:active:not(:disabled) { background: var(--superficie-alta); }
+.boton:disabled { opacity: .5; cursor: default; }
+.boton-principal { width: 100%; background: var(--acento); border-color: var(--acento); color: var(--acento-texto); font-size: 1.1875rem; }
+.boton-principal:active:not(:disabled) { background: #e05f22; }
+.chip { font-family: var(--mono); font-size: 1rem; min-width: 4.5rem; }
+.rapidos { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0; }
+
+.manual { display: flex; gap: .5rem; }
+.manual input {
+  flex: 1; min-width: 0; min-height: 48px; padding: .5rem .875rem;
+  background: var(--fondo); color: var(--texto);
+  border: 1px solid var(--linea); border-radius: 12px;
+  font: 1.0625rem var(--mono);
+  caret-color: var(--acento);
+}
+.manual input::placeholder { color: var(--texto-suave); font-family: var(--fuente); }
+.manual input:focus-visible { border-color: var(--acento); outline-offset: 0; }
+
+.log {
+  font-variant-numeric: tabular-nums;
+  margin: .75rem 0; padding: .75rem;
+  height: 18rem; overflow-y: auto;
+  background: #0a101a; border: 1px solid var(--linea); border-radius: 12px;
+  font: .875rem/1.5 var(--mono);
+  overflow-wrap: anywhere;
+  scrollbar-color: var(--linea) transparent;
+}
+.log-tx { color: var(--alerta); }
+.log-rx { color: var(--ok); }
+.log-error { color: var(--error); }
+.log-vacio { color: var(--texto-suave); font-family: var(--fuente); }
+.fila { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
