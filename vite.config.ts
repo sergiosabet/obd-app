@@ -7,6 +7,7 @@ const base = process.env.BASE ?? '/'
 
 export default defineConfig({
   base,
+  define: { __VERSION__: JSON.stringify(process.env.npm_package_version ?? 'dev') },
   plugins: [
     react(),
     VitePWA({

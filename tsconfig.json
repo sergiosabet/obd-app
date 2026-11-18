@@ -12,7 +12,7 @@
     "noUncheckedIndexedAccess": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "types": ["vite/client"]
+    "types": ["vite/client", "web-bluetooth"]
   },
   "include": ["src", "tests"]
 }
